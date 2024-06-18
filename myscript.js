@@ -38,28 +38,24 @@ function playRound (humanChoice, computerChoice) {
         computerScore++;
     }
 
-    // return winner
-
-    // let winner = (humanChoice === "rock" 
-    // && computerChoice ==="scissor") ? humanScore+=humanScore :
-    // (humanChoice === "scissor" && computerChoice === "paper") ? "You won!" :
-    // (humanChoice === "paper" && computerChoice === "rock") ? "You won!" :
-    // (humanChoice === computerChoice) ? "It is a tie" :
-    // "You losed";
-
-    return result + '\nHuman selection ' + humanScore + " " + humanChoice + 
-    '\nComputer selection ' + computerScore + " " + computerChoice
-
-    // return result
+    return result
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+// const humanSelection = getHumanChoice();
+// const computerSelection = getComputerChoice();
 
-console.log(playRound(humanSelection, computerSelection))
 
 // Logic to play entire game - 5 rounds
 
-// for (let i=0; i < 5; i++){
+for (let i=1; i < 6; i++){
+    let roundWiner = playRound(getHumanChoice(), getComputerChoice())
 
-// }
+    console.log(i + ". Round: " + roundWiner + " Current result: Your score: " + humanScore + " Computer score: " + computerScore)
+}
+
+let finalResult = (humanScore > computerScore) ? "You are the winner" :
+    (humanScore == computerScore) ? "It is a tie." :
+    "You are the looser :(";
+
+console.log (finalResult + " Your score: " + humanScore + " Computer score:" + computerScore)
+
