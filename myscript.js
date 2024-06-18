@@ -12,7 +12,7 @@ function getComputerChoice () {
 //Human logic get Human choise
 
 function getHumanChoice() {
-    let choice = prompt("Enter your choice - Rock/Paper/Scisser");
+    let choice = prompt("Enter your choice - Rock/Paper/Scissor");
     return choice.toLowerCase();
 }
 
