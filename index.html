@@ -7,30 +7,68 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <BR></BR>
-
-    <div>
-        <button class="play">PLAY</button>
+    <header>
+        <h1>PLAY the Rock Paper Scissor GAME</h1>
+    </header>
+    
+<section class="score-board">
+    <h3>Score Board</h3>
+    <div class="score-container">
+        <div class="humanScore">
+            <img src="https://cdn-icons-png.flaticon.com/128/476/476700.png" alt="human">
+            <span class="humanScores">0</span>
+        </div>
+        <div class="computerScore">
+            <img src="https://cdn-icons-png.flaticon.com/128/3067/3067513.png" alt="computer">
+            <span class="computerScores">0</span>
+        </div>
     </div>
-<BR></BR>
-    <div class="container">
-        <button class="rock selection">Rock</button>
-        <button class="paper selection">Paper</button>
-        <button class="scissor selection">Scissor</button>
+
+</section>
+
+<section class="round-section">
+    <h3> Play Round</h3>
+
+    <div class="round-container">
+        <button class="play">
+            <img class="btn-img" src="https://cdn-icons-png.flaticon.com/128/8064/8064961.png" alt="Play">
+
+        </button>
     </div>
 
-    <p>Score: Your: <span class="humanScore">0</span> Computer: <span class="computerScore">0</span></p>
+    <h3>Round no: <span class="round">0</span></h3>
 
-    <p>Round no: <span class="round">0</span> </p>
+</section>
 
-            <!-- <img class="btn-img" src="https://cdn-icons-png.flaticon.com/128/8064/8064961.png" alt="Play"> -->
+<section class="selection-section">
+
+    <h3> Chose your option!</h3>
+
+    <div class="selections-container">
+        <button class="rock selection">
+            <img class="btn-img" src="https://cdn-icons-png.flaticon.com/128/7053/7053536.png" alt="Rock">
+            <span>Rock</span>
+        </button>
+
+        <button class="paper selection">
+            <img class="btn-img" src="https://cdn-icons-png.flaticon.com/128/3130/3130357.png" alt="Paper">
+            <span>Paper</span>
+        </button>
+
+        <button class="scissor selection">
+            <img class="btn-img" src="https://cdn-icons-png.flaticon.com/128/1077/1077617.png" alt="Scissor">
+            <span>Scissor</span>
+        </button>
+    </div>
 
 
-            <!-- <img class="btn-img" src="https://cdn-icons-png.flaticon.com/128/7053/7053536.png" alt="Rock"> -->
+</section>
 
-            <!-- <img class="btn-img" src="https://cdn-icons-png.flaticon.com/128/3130/3130357.png" alt="Paper"> -->
-
-            <!-- <img class="btn-img" src="https://cdn-icons-png.flaticon.com/128/1077/1077617.png" alt="Scissor"> -->
+<!-- <section class="info">
+    <h3 class="roundInfo"></h3>
+    <img class="human-selecion" src="" alt="">
+    <img class="computer-selecion" src="" alt="">
+</section> -->
 
     <script src="myscript.js"></script>
 </body>
