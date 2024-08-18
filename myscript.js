@@ -6,7 +6,7 @@ let roundNo = 1;
 // Score-boerd items
 const hmScore = document.querySelector('.humanScores')
 const compScore = document.querySelector('.computerScores')
-
+const scoreBoard = document.querySelector('.score-board')
 
 const playBtn = document.querySelector('.play')
 
@@ -60,9 +60,15 @@ function getHumanChoice () {
 playBtn.addEventListener('click', playRound)
 
 async function playRound (){
+
+    const temDiv = document.querySelector('.tempRoundResult');
+    if (temDiv) {
+        temDiv.remove();
+    }
+
     round.textContent = roundNo;
     // noteToSelectOption.textContent = "Choose your option:";
-
+    playBtn.style.display ='none';
     // roundInfo.textContent = ''
     roundNo++;
 
@@ -91,32 +97,133 @@ async function playRound (){
 
     // roundInfo.innerHTML = "Your selection: " + humanChoice + " vs Computer selection: " + computerChoice + '<br>' + result
 
-    console.log(computerChoice  + ' comp')
-    console.log(humanChoice + ' human')
-    console.log(result)
+    // console.log(computerChoice  + ' comp')
+    // console.log(humanChoice + ' human')
+    // console.log(result)
 
     validateFivePointsWiner()
+    styleScore()
+    playBtn.style.display ='block';
+
+    displayRoundResults(humanChoice,computerChoice, result)
 
 }
 
 function validateFivePointsWiner () {
-    if (humanScore == 5 || computerScore ==5) {
+    if (humanScore == 5 || computerScore == 5) {
         
-        alert('Game is over human score ' + humanScore + ' COM SCORE ' + computerScore)
+        // alert('Game is over human score ' + humanScore + ' COM SCORE ' + computerScore)
         
+
+        const divPlayAgain = document.createElement('div');
+        divPlayAgain.className = 'divPlayAgain';
+
+        const span = document.createElement('span');
+        span.textContent = 'Game over'
+
+        const playAgainBtn = document.createElement('button');
+        playAgainBtn.textContent = 'Play Again';
+        playAgainBtn.className = 'playAgain';
+
+        divPlayAgain.appendChild(span);
+        divPlayAgain.appendChild(playAgainBtn);
+
+        divPlayAgain.style.display = 'flex';
+        
+
+        scoreBoard.appendChild(divPlayAgain)
+
+
+
+
         humanScore = 0;
         hmScore.textContent = "0"
 
         computerScore = 0; 
         compScore.textContent = '0';
 
-        
         round.textContent = '0';
         roundNo = 1;
     }
         
 }
 
+function styleScore () {
+    if(humanScore > computerScore) {
+        hmScore.style.color = 'green'
+        compScore.style.color = 'red'
+    }
+    if (humanScore < computerScore){
+        hmScore.style.color = 'red'
+        compScore.style.color = 'green'
+    }
+    if(humanScore == computerScore) {
+        hmScore.style.color = 'orange'
+        compScore.style.color = 'orange'
+    }
+}
+
+//Round info section
+
+function displayRoundResults (human, comp, result) {
+    
+    const rockImg = 'https://cdn-icons-png.flaticon.com/128/7053/7053536.png'
+    const paperImg = 'https://cdn-icons-png.flaticon.com/128/3130/3130357.png'
+    const scissorImg = "https://cdn-icons-png.flaticon.com/128/1077/1077617.png"
+    
+    if(human === "Rock"){
+        human = rockImg
+    }
+    if(human === 'Paper'){
+        human = paperImg
+    }
+    if (human === 'Scissor') {
+        human = scissorImg
+    }
+
+    if(comp === "Rock"){
+        comp = rockImg
+    }
+    if(comp === 'Paper'){
+        comp = paperImg
+    }
+    if (comp === 'Scissor')  {
+        comp = scissorImg
+    }
+    
+    const roundSection = document.querySelector('.round-section')
+
+
+    const divRoundresult = document.createElement('div');
+    divRoundresult.className = 'tempRoundResult';
+    divRoundresult.style.display = 'flex';
+    divRoundresult.style.justifyContent = 'space-around';
+
+
+    const imgHuman = document.createElement('img')
+    const imgComp = document.createElement('img')
+    const span = document.createElement('span')
+    span.style.textAlign = 'center';
+    span.style.margin = 'auto'
+    span.style.fontSize = 'large';
+    span.style.fontWeight = '700'
+
+    span.style.color = result == "You won the round!" ? 'green' : 
+    result == 'You lost the round' ? 'red' : 'orange'
+
+
+    imgHuman.src = human;
+    span.innerHTML = 'vs' + '<br>' + result;
+    imgComp.src = comp;
+
+    divRoundresult.appendChild(imgHuman);
+    divRoundresult.appendChild(span);
+    divRoundresult.appendChild(imgComp);
+
+    roundSection.appendChild(divRoundresult)
+
+
+}
 
 
 // const humanSelection = getHumanChoice();
