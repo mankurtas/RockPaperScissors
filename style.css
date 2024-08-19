@@ -16,6 +16,45 @@ button {
     border-radius: 15px;
 } */
 
+.playAgain {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #ff6b6b, #f06595);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 10px;
+}
+
+.playAgain:hover {
+    background: linear-gradient(45deg, #f06595, #ff6b6b);
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.game-over {
+    font-size: 15px;
+    font-weight: bold;
+    color: #524948;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding: 20px;
+    background: linear-gradient(45deg, #9e6862, #c0392b);
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse 1s infinite alternate;
+    margin: 10px;
+}
+
+
+
 img {
     width: 100px;
     height: 100px;

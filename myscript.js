@@ -9,6 +9,8 @@ const compScore = document.querySelector('.computerScores')
 const scoreBoard = document.querySelector('.score-board')
 
 const playBtn = document.querySelector('.play')
+const playAgain = document.querySelector('.playAgain')
+
 
 // Play round sections items
 
@@ -20,7 +22,7 @@ const round = document.querySelector('.round')
 const selectionsButtons = document.querySelectorAll('button.selection');
 
 // Game over section
-const noteToSelectOption = document.querySelector('.noteSelect')
+// const noteToSelectOption = document.querySelector('.noteSelect')
 
 
 // Computer logic - should return choise
@@ -54,7 +56,6 @@ function getHumanChoice () {
     })
 }
 
-
 //Logic to play one round
 
 playBtn.addEventListener('click', playRound)
@@ -67,9 +68,9 @@ async function playRound (){
     }
 
     round.textContent = roundNo;
-    // noteToSelectOption.textContent = "Choose your option:";
+   
     playBtn.style.display ='none';
-    // roundInfo.textContent = ''
+ 
     roundNo++;
 
     const humanChoice = await getHumanChoice()
@@ -94,32 +95,29 @@ async function playRound (){
         compScore.textContent = computerScore
     }
 
-
-    // roundInfo.innerHTML = "Your selection: " + humanChoice + " vs Computer selection: " + computerChoice + '<br>' + result
-
-    // console.log(computerChoice  + ' comp')
-    // console.log(humanChoice + ' human')
-    // console.log(result)
-
-    validateFivePointsWiner()
     styleScore()
     playBtn.style.display ='block';
 
     displayRoundResults(humanChoice,computerChoice, result)
+    validateFivePointsWiner()
 
 }
+
+// Game last till 5 score
 
 function validateFivePointsWiner () {
     if (humanScore == 5 || computerScore == 5) {
         
-        // alert('Game is over human score ' + humanScore + ' COM SCORE ' + computerScore)
+        playBtn.style.display ='none';
         
 
         const divPlayAgain = document.createElement('div');
         divPlayAgain.className = 'divPlayAgain';
 
         const span = document.createElement('span');
-        span.textContent = 'Game over'
+        span.innerHTML = 'That is it!' + '<br>' + 'Game is over' + '<br>'
+        span.style.textAlign = 'center';
+        span.className = 'game-over'
 
         const playAgainBtn = document.createElement('button');
         playAgainBtn.textContent = 'Play Again';
@@ -129,24 +127,46 @@ function validateFivePointsWiner () {
         divPlayAgain.appendChild(playAgainBtn);
 
         divPlayAgain.style.display = 'flex';
+        divPlayAgain.style.flexDirection = 'column'
+        divPlayAgain.style.justifyContent = 'center'
+
         
 
         scoreBoard.appendChild(divPlayAgain)
 
 
+        playAgainBtn.addEventListener('click',() => {
+            
+            
+            humanScore = 0;
+            hmScore.textContent = "0"
+            hmScore.style.color = 'black'
+        
+
+            computerScore = 0; 
+            compScore.textContent = '0';
+            compScore.style.color = 'black'
+
+            round.textContent = '0';
+            roundNo = 1;
+
+            playBtn.style.display ='block';
+
+            const temDiv = document.querySelector('.tempRoundResult');
+            temDiv.remove();
+            divPlayAgain.remove();
 
 
-        humanScore = 0;
-        hmScore.textContent = "0"
+        })
 
-        computerScore = 0; 
-        compScore.textContent = '0';
-
-        round.textContent = '0';
-        roundNo = 1;
+     
     }
         
 }
+
+
+
+// Style scoreboard
 
 function styleScore () {
     if(humanScore > computerScore) {
@@ -226,21 +246,4 @@ function displayRoundResults (human, comp, result) {
 }
 
 
-// const humanSelection = getHumanChoice();
-// const computerSelection = getComputerChoice();
-
-
-// Logic to play entire game - 5 rounds
-
-// for (let i=1; i < 6; i++){
-//     let roundWiner = playRound(getHumanChoice(), getComputerChoice())
-
-//     console.log(i + ". Round: " + roundWiner + " Current result: Your score: " + humanScore + " Computer score: " + computerScore)
-// }
-
-// let finalResult = (humanScore > computerScore) ? "You are the winner" :
-//     (humanScore == computerScore) ? "It is a tie." :
-//     "You are the looser :(";
-
-// console.log (finalResult + " Your score: " + humanScore + " Computer score:" + computerScore)
 
